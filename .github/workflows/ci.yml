@@ -1,14 +1,10 @@
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -17,7 +13,7 @@ jobs:
     
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v3
 
       - name: Setup Web Application
         run: docker run -d -p 8000:8000 vncrtech/puppybank
@@ -34,10 +30,12 @@ jobs:
           pip install --upgrade robotframework-seleniumlibrary
 
       - name: Run Tests
-        run: $GITHUB_WORKSPACE/.venv/bin/python3.12 -m robot.run --suite test-robot-ci.tests.smoke.login --outputdir $GITHUB_WORKSPACE/results .
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/results
+          $GITHUB_WORKSPACE/.venv/bin/python3.12 -m robot.run --outputdir $GITHUB_WORKSPACE/results .
 
-      - name: Upload Test Report
-        uses: actions/upload-artifact@v4.3.1
-        with:
-          name: rf-results
-          path: results/
+      - name: Display Test Report
+        run: |
+          echo "::group::Robot Framework Report"
+          cat $GITHUB_WORKSPACE/results/report.html
+          echo "::endgroup::"
