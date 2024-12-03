@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.7 on linux)" generated="2024-12-03T08:12:35.526130" rpa="false" schemaversion="5">
+<suite id="s1" name="Test-Robot-Ci" source="/home/runner/work/test-robot-ci/test-robot-ci">
+<suite id="s1-s1" name="Tests" source="/home/runner/work/test-robot-ci/test-robot-ci/tests">
+<suite id="s1-s1-s1" name="Smoke" source="/home/runner/work/test-robot-ci/test-robot-ci/tests/smoke">
+<suite id="s1-s1-s1-s1" name="Login" source="/home/runner/work/test-robot-ci/test-robot-ci/tests/smoke/login.robot">
+<kw name="Open Browser" owner="SeleniumLibrary" type="SETUP">
+<msg time="2024-12-03T08:12:35.833282" level="INFO">Opening browser 'headlessfirefox' to base url 'https://www.google.com'.</msg>
+<arg>https://www.google.com</arg>
+<arg>headlessfirefox</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-12-03T08:12:35.833030" elapsed="35.254051"/>
+</kw>
+<test id="s1-s1-s1-s1-t1" name="Test Case 1" line="9">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Hello World</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-12-03T08:13:11.088095" elapsed="0.000272"/>
+</kw>
+<status status="PASS" start="2024-12-03T08:13:11.087426" elapsed="0.001144"/>
+</test>
+<status status="PASS" start="2024-12-03T08:12:35.549951" elapsed="35.539179"/>
+</suite>
+<status status="PASS" start="2024-12-03T08:12:35.549149" elapsed="35.540871"/>
+</suite>
+<status status="PASS" start="2024-12-03T08:12:35.548161" elapsed="35.546747"/>
+</suite>
+<status status="PASS" start="2024-12-03T08:12:35.526941" elapsed="35.570107"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Test-Robot-Ci">Test-Robot-Ci</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Tests">Test-Robot-Ci.Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="Smoke">Test-Robot-Ci.Tests.Smoke</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1-s1" name="Login">Test-Robot-Ci.Tests.Smoke.Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
