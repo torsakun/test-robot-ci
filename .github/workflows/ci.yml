@@ -34,8 +34,8 @@ jobs:
           mkdir -p $GITHUB_WORKSPACE/results
           $GITHUB_WORKSPACE/.venv/bin/python3.12 -m robot.run --outputdir $GITHUB_WORKSPACE/results .
 
-      - name: Display Test Report
-        run: |
-          echo "::group::Robot Framework Report"
-          cat $GITHUB_WORKSPACE/results/report.html
-          echo "::endgroup::"
+      - name: Deploy Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: $GITHUB_WORKSPACE/results
