@@ -10,32 +10,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout
+      # Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Setup Web Application
-        run: docker run -d -p 8000:8000 vncrtech/puppybank
-
+      # Setup Python
       - name: Setup Python
         uses: actions/setup-python@v5.0.0
         with:
-          python-version: 3.12.2
+          python-version: '3.12'
 
-      - name: Setup Workspace
+      # Install Dependencies
+      - name: Install Dependencies
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          pip install --upgrade robotframework-seleniumlibrary
+          pip install --upgrade pip
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
 
+      # Run Robot Framework Tests
       - name: Run Tests
         run: |
-          mkdir -p $GITHUB_WORKSPACE/results
-          $GITHUB_WORKSPACE/.venv/bin/python3.12 -m robot.run --outputdir $GITHUB_WORKSPACE/results .
+          mkdir -p results
+          source .venv/bin/activate
+          python -m robot --outputdir results .
 
+      # Deploy Report to GitHub Pages
       - name: Deploy Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: $GITHUB_WORKSPACE/results
+          publish_dir: ./results
